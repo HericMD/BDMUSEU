@@ -3,7 +3,7 @@
 -- Sql ANSI 2003 - brModelo.
 -- Alunos: José Augusto Veridiana, Marcus Vinicius de Oliveira, Heric Matheus Damasio
 
-CREATE DATABASE 	banco_museu;
+CREATE DATABASE banco_museu;
 USE banco_museu;
 
 
@@ -107,8 +107,8 @@ values
 insert into funcionario(nome_funcionario, salario_funcionario, cpf_funcionario, cod_tipo_funcionario)
 values
 ("Rogério", 2009.15, "255.662.580-50", 2),
-("Julia", 2541.64, "906.726.060-62", 3),
-("Pablo", 2498.77, "020.709.690-29", 3),
+("Julia", 2541.64, "906.726.060-62", 3), #2
+("Pablo", 2498.77, "020.709.690-29", 3), #3
 ("Paola", 1443.15, "126.773.170-28", 1),
 ("Cleiton", 1452.74, "072.254.270-40", 1),
 ("Jorge", 1436.98, "619.864.050-79", 1),
@@ -121,11 +121,11 @@ values
 ("Carlos", 2031.73, "954.722.330-54", 2),
 ("Lucas", 1999.69, "568.774.250-65", 2),
 ("Manuela", 2034.68, "633.496.180-22", 2),
-("Neusa", 2503.81, "459.159.230-89", 3),
-("Roberto", 2536.95, "806.181.570-26", 3),
+("Neusa", 2503.81, "459.159.230-89", 3), #16
+("Roberto", 2536.95, "806.181.570-26", 3), #17
 ("Fernando", 2022.23, "897.775.970-61", 2),
 ("Otávio", 1450.00, "594.958.540-24", 1),
-("Lucas", 2520.11, "411.579.300-77", 3)
+("Lucas", 2520.11, "411.579.300-77", 3) #20
 ;
 
 insert into autor(nacionalidade_autor, nome_autor)
@@ -168,13 +168,13 @@ values
 (1937, "Guernica", "surrealista", 5, 1),
 (1922, "La Granja","naïf", 16, 1),
 (1952, "Convergencce", "abstrata", 2, 1),
-("1961", "Farfalla", "abstrata", 17, 1),
-("1931", "A Persistência da Memória", "surrealista", 15, 1),
-("1481", "Capela sistina", "afresco", 6, 1),
-("1831", "A Grande Onda de Kanagawa", "gravura", 18, 1),
-("1863", "Olympia", "impressionista", 3, 1),
-("1978", "Mona Lisa (releitura)", "naïf", 10, 1),
-("1996", "Sugar Children: Valicia Bathes in Sunday Clothes", "fotografia", 9, 1)
+(1961, "Farfalla", "abstrata", 17, 1),
+(1931, "A Persistência da Memória", "surrealista", 15, 1),
+(1481, "Capela sistina", "afresco", 6, 1),
+(1831, "A Grande Onda de Kanagawa", "gravura", 18, 1),
+(1863, "Olympia", "impressionista", 3, 1),
+(1978, "Mona Lisa (releitura)", "naïf", 10, 1),
+(1996, "Sugar Children: Valicia Bathes in Sunday Clothes", "fotografia", 9, 1)
 ;
 
 insert into obra(ano_obra, titu_obra, peso_obra, material_obra, cod_autor, cod_tipo_obra)
@@ -208,3 +208,52 @@ values
 (14, 06, "11:15:00", "17:00:00", "2016-12-25"),
 (08, 07, "05:43:21", "23:15:23", "2017-07-11")
 ;
+
+insert into materia_prima(qtd_est_mat, nome_mat_prima)
+values
+(7164, "argila"),
+(5123, "madeira"),
+(1764, "cera"),
+(36234, "tinta"),
+(1826, "pedra"),
+(39421, "óleo"),
+(21922, "aquarela"),
+(7810, "ferro"),
+(1542, "bronze"),
+(3128, "cobre"),
+(8349, "gesso"),
+(2133, "silicone"),
+(3991, "mármore"),
+(5312, "carvão"),
+(4830, "grafite"),
+(2022, "alumínio"),
+(5076, "plástico"),
+(248, "ouro"),	
+(7777, "barro"),
+(2048, "resina")
+;
+
+insert into manutencao(data_termi_mnt, custo_mnt, data_ini_mnt, desc_mnt, cod_obra, func_id_funcionario)
+values
+("2021-10-30", 5123.12, "2021-09-04", "Restaurar", 1, 2),
+("2022-04-01", 1421.53, "2022-03-23", "Conservar", 2, 3),
+("2022-02-14", 4325.13, "2022-01-26", "Identificar", 3, 16),
+("2015-11-23", 3289.41, "2013-09-29", "Restaurar", 4, 17),
+("2020-05-17", 4011.69, "2020-04-11", "Restaurar", 5, 20),
+("2022-03-16", 2376.15, "2022-02-27", "Restaurar", 6, 2),
+("2022-05-07", 1874.64, "2022-05-01", "Identificar", 7, 3),
+("2022-09-11", 9382.73, "2022-04-15", "Restaurar", 8, 16),
+("2022-10-29", 7421.42, "2022-06-28", "Identificar", 9, 17),
+("2022-08-30", 8712.30, "2022-04-04", "Restaurar", 10, 20),
+("2022-03-01", 5312.51, "2022-01-01", "Restaurar", 11, 2 ),
+("2022-05-24", 3962.37, "2022-03-05", "Conservar", 12, 3),
+("2022-02-28", 7311.11, "2021-10-12", "Restaurar", 13, 16),
+("2022-04-04", 5656.56, "2022-01-05", "Restaurar", 14, 17),
+("2022-01-11", 1234.56, "2021-12-10", "Restaurar", 15, 20),
+("2022-11-22", 3566.94, "2022-08-15", "Conservar", 16, 2),
+("2022-07-09", 2564.33, "2022-05-21", "Restaurar", 17, 3),
+("2022-06-11", 4682.16, "2022-02-15", "Identificar", 18, 16),
+("2022-12-24", 9732.12, "2022-02-10", "Resturar", 19, 17),
+("2022-05-12", 5000.00, "2021-12-12", "Restaurar", 20, 20)
+; 
+select * from manutencao;
