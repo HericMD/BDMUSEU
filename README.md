@@ -180,12 +180,12 @@ values
 insert into obra(ano_obra, titu_obra, peso_obra, material_obra, cod_autor, cod_tipo_obra)
 values
 (1972, "Schuttblume", 330.00, "madeira", 20, 2),
-(2005, "In bed", "1000.00", "argila & silicone", 12, 2),
-(1440, "David", "6000.00", "mármore", 11, 2),
-(1771, "Igreja de São Francisco de Assis (Ouro Preto)", "500000.00", "madeira & pedra", 8, 2)
+(2005, "In bed", 1000.00, "argila & silicone", 12, 2),
+(1440, "David", 6000.00, "mármore", 11, 2),
+(1771, "Igreja de São Francisco de Assis (Ouro Preto)", 500000.00, "madeira & pedra", 8, 2)
 ;
 
-insert into atividade(ob_cod_obra, func_id_funcionario, hora_entrada, hora_saida, data_atividade) 
+insert into atividade(ob_cod_obra, func_id_funcionarioobrapeso_obra, hora_entrada, hora_saida, data_atividade) 
 values 
 (11, 14, "15:32:15", "22:41:21", "2022-11-19"),
 (20, 12, "02:31:01", "14:15:53", "2021-12-01"),
@@ -256,4 +256,74 @@ values
 ("2022-12-24", 9732.12, "2022-02-10", "Resturar", 19, 17),
 ("2022-05-12", 5000.00, "2021-12-12", "Restaurar", 20, 20)
 ; 
-select * from manutencao;
+insert into manu_mat(Campo_1, Campo_2, qtd_mat_mnt)
+values
+(1, 20, "231 resinas"),
+(2, 19, "633 barros"),
+(3, 18, "57 ouros"),
+(4, 17, "164 plásticos"),
+(5, 16, "76 alumínios"),
+(6, 15, "210 grafietes"),
+(7, 14, "241 carvões"),
+(8, 13, "187 mármores"),
+(9, 12, "99 silicones"),
+(10, 11, "500 gessos"),
+(11, 10, "162 cobres"),
+(12, 9, "81 bronzes"),
+(13, 8, "255 ferros"),
+(14, 7, "1005 aquarelas"),
+(15, 6, "2560 óleos"),
+(16, 5, "173 pedras"),
+(17, 4, "1046 tintas"),
+(18, 3, " 120 ceras"),
+(19, 2, "231 madeiras"),
+(20, 1, "412 argilas")
+;
+
+insert into salao(num_salao, andar_museu, salao)
+values
+(101, 1, "S101"),
+(102, 1, "S102"),
+(103, 1, "S103"),
+(104, 1, "S104"),
+(105, 1, "S105"),
+(201, 2, "S201"),
+(202, 2, "S202"),
+(203, 2, "S203"),
+(204, 2, "S204"),
+(205, 2, "S205"),
+(301, 3, "S301"),
+(302, 3, "S302"),
+(303, 3, "S303"),
+(304, 3, "S304"),
+(305, 3, "S305"),
+(401, 4, "S401"),
+(402, 4, "S402"),
+(403, 4, "S403"),
+(404, 4, "S404"),
+(405, 4, "S405")
+;
+
+insert into salao_obra(salao_cod_salao, obra_cod_obra, posicao_salao)
+values
+(1, 20, "primeiro andar, primeira esquerda"),
+(2, 19, "primeiro andar, primeira direita"),
+(3, 18, "primeiro andar, segunda esquerda"),
+(4, 17, "primeiro andar, segunda direita"),
+(5, 16, "primeiro andar, última porta"),
+(6, 15, "segundo andar, primeira esquerda"),
+(7, 14, "segundo andar, primeira direita"),
+(8, 13, "segundo andar, segunda esquerda"),
+(9, 12, "segundo andar, segunda direita"),
+(10, 11, "segundo andar, última porta"),
+(11, 10, "terceiro andar, primeira esquerda"),
+(12, 9, "terceiro andar, primeira direita"),
+(13, 8, "terceiro andar, segunda esquerda"),
+(14, 7, "terceiro andar, segunda direita"),
+(15, 6, "terceiro andar, última porta"),
+(16, 5, "quarto andar, primeira esquerda"),
+(17, 4, "quarto andar, primeira direita"),
+(18, 3, "quarto andar, segunda esquerda"),
+(19, 2, "quarto andar, segunda direita"),
+(20, 1, "quarto andar, última porta")
+;
