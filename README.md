@@ -3,9 +3,8 @@
 -- Sql ANSI 2003 - brModelo.
 -- Alunos: José Augusto Veridiana, Marcus Vinicius de Oliveira, Heric Matheus Damasio
 
-CREATE DATABASE banco_museu;
-USE banco_museu;
-
+CREATE DATABASE BD_MUSEU_MJH;
+USE BD_MUSEU_MJH;
 
 CREATE TABLE autor (
 cod_autor int PRIMARY KEY AUTO_INCREMENT,
@@ -330,9 +329,23 @@ values
 
 # 1. CRUC que retorne: nome_funcionario, cpf_funcionario, tipo_funcionario, salario_funcionario, de todos os funcionários cadastrados na entidade funcionario.
 
+select nome_funcionario, cpf_funcionario, salario_funcionario, tipo_funcionario
+from funcionario, tipo_funcionario
+where funcionario.cod_tipo_funcionario = tipo_funcionario.cod_tipo_funcionario;
+
 # 2.CRUC que retorne: título da obra, ano da obra, nome autor, nacionalidade do autor, descrição estilo da obra, para as obras do tipo pintura.
 
+select titu_obra, ano_obra, nome_autor, nacionalidade_autor, desc_estilo_obra as estilo_obra
+from obra, autor, tipo_obra
+where obra.cod_autor = autor.cod_autor and
+obra.cod_tipo_obra = tipo_obra.cod_tipo_obra and
+tipo_obra.cod_tipo_obra = 1;
+
 # 3. CRUC que retorne: custo manutenção, data início manutenção, data término manutenção, descrição da manutenção, de todas as manutenções cadastradas.
+
+select custo_mnt, data_ini_mnt, data_termi_mnt, desc_mnt
+from manutencao, obra
+where manutencao.cod_obra = obra.cod_obra;
 
 # 4. CRUC que retorne: nome matéria prima, quantidade da matéria prima na manutenção, descrição da manutenção, custo da manutenção, título obra, ano obra, nome funcionário responsável pela manutenção, filtrando pelo nome do autor da obra.
 
