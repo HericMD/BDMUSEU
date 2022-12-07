@@ -185,7 +185,7 @@ values
 (1771, "Igreja de São Francisco de Assis (Ouro Preto)", 500000.00, "madeira & pedra", 8, 2)
 ;
 
-insert into atividade(ob_cod_obra, func_id_funcionarioobrapeso_obra, hora_entrada, hora_saida, data_atividade) 
+insert into atividade(ob_cod_obra, func_id_funcionario, hora_entrada, hora_saida, data_atividade) 
 values 
 (11, 14, "15:32:15", "22:41:21", "2022-11-19"),
 (20, 12, "02:31:01", "14:15:53", "2021-12-01"),
@@ -275,7 +275,7 @@ values
 (15, 6, "2560 óleos"),
 (16, 5, "173 pedras"),
 (17, 4, "1046 tintas"),
-(18, 3, " 120 ceras"),
+(18, 3, "120 ceras"),
 (19, 2, "231 madeiras"),
 (20, 1, "412 argilas")
 ;
@@ -326,4 +326,81 @@ values
 (18, 3, "quarto andar, segunda esquerda"),
 (19, 2, "quarto andar, segunda direita"),
 (20, 1, "quarto andar, última porta")
+;
+
+# 1. CRUC que retorne: nome_funcionario, cpf_funcionario, tipo_funcionario, salario_funcionario, de todos os funcionários cadastrados na entidade funcionario.
+
+# 2.CRUC que retorne: título da obra, ano da obra, nome autor, nacionalidade do autor, descrição estilo da obra, para as obras do tipo pintura.
+
+# 3. CRUC que retorne: custo manutenção, data início manutenção, data término manutenção, descrição da manutenção, de todas as manutenções cadastradas.
+
+# 4. CRUC que retorne: nome matéria prima, quantidade da matéria prima na manutenção, descrição da manutenção, custo da manutenção, título obra, ano obra, nome funcionário responsável pela manutenção, filtrando pelo nome do autor da obra.
+
+select autor.nome_autor, materia_prima.nome_mat_prima, manu_mat.qtd_mat_mnt, manutencao.desc_mnt, manutencao.custo_mnt, obra.titu_obra, obra.ano_obra, funcionario.nome_funcionario
+from materia_prima, manutencao, manu_mat, obra, funcionario, autor
+where materia_prima.cod_mat_prima = manu_mat.campo_2
+and manu_mat.campo_1 = manutencao.mnt_obra
+and obra.cod_obra = manutencao.cod_obra
+and autor.cod_autor = obra.cod_autor
+and funcionario.id_funcionario = manutencao.func_id_funcionario
+#group by autor.cod_autor
+and autor.nome_autor = "Claude Monet"
+;
+
+select * from autor;
+
+# 5. CRUC que retorne: título obra e o cálculo do custo total da manutenção agrupando por título da obra. (Considerar a soma de todas as manutenções de cada obra)
+
+select obra.titu_obra, sum(custo_mnt)
+from obra, manutencao
+where obra.cod_obra = manutencao.cod_obra
+group by obra.titu_obra
+;
+
+# 6. CRUC que retorne: hora entrada, hora saída, data atividade, filtrando pelo número do salão.
+
+select hora_entrada, hora_saida, data_atividade
+from atividade, obra, salao, salao_obra
+where atividade.ob_cod_obra = obra.cod_obra
+and obra.cod_obra = salao_obra.obra_cod_obra
+and salao_obra.salao_cod_salao = salao.cod_salao
+and salao.num_salao = 101 #Filtro
+;
+select num_salao from salao;
+
+# 7. CRUC que retorne: nacionalidade do autor, ano obra, título obra, descrição estilo obra, filtrando pelo tipo da obra.
+
+select nacionalidade_autor, ano_obra, titu_obra, desc_estilo_obra
+from autor, obra, tipo_obra
+where autor.cod_autor = obra.cod_autor
+and tipo_obra.cod_tipo_obra = obra.cod_tipo_obra
+#and tipo_obra.desc_tipo_obra = "Escultura"
+and tipo_obra.desc_tipo_obra = "Pintura"
+; 
+
+# 8. CRUC que retorne: quantidade de obras agrupando pela descrição do tipo de cada obra.
+
+select tipo_obra.desc_tipo_obra as "tipo_obra", count(obra.cod_obra) as "qtd_obras"
+from obra, tipo_obra
+where obra.cod_tipo_obra = tipo_obra.cod_tipo_obra
+group by tipo_obra.cod_tipo_obra;
+;
+
+# 9. CRUC que retorne: quantidade de obras expostas, agrupando pelo andar do museu.
+
+select salao.andar_museu, count(obra.cod_obra)
+from salao, salao_obra, obra
+where obra.cod_obra = salao_obra.obra_cod_obra
+and salao_obra.salao_cod_salao = salao.cod_salao
+group by salao.andar_museu
+; 
+
+# 10. CRUC que retorne: número salão, andar museu, salão, descrição estilo obra, título obra, ano obra, nome autor, filtrando pela posição do salão.
+
+select salao.salao, salao.num_salao, salao.andar_museu, obra.desc_estilo_obra, obra.titu_obra, obra.ano_obra, autor.nome_autor
+from salao, obra, autor, salao_obra
+where salao.cod_salao = salao_obra.salao_cod_salao
+and obra.cod_obra = salao_obra.obra_cod_obra
+and autor.cod_autor = obra.cod_autor
+group by salao.salao
 ;
