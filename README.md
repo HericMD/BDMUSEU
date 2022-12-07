@@ -6,6 +6,7 @@
 CREATE DATABASE BD_MUSEU_MJH;
 USE BD_MUSEU_MJH;
 
+
 CREATE TABLE autor (
 cod_autor int PRIMARY KEY AUTO_INCREMENT,
 nacionalidade_autor char(3) not null,
@@ -344,8 +345,7 @@ tipo_obra.cod_tipo_obra = 1;
 # 3. CRUC que retorne: custo manutenção, data início manutenção, data término manutenção, descrição da manutenção, de todas as manutenções cadastradas.
 
 select custo_mnt, data_ini_mnt, data_termi_mnt, desc_mnt
-from manutencao, obra
-where manutencao.cod_obra = obra.cod_obra;
+from manutencao;
 
 # 4. CRUC que retorne: nome matéria prima, quantidade da matéria prima na manutenção, descrição da manutenção, custo da manutenção, título obra, ano obra, nome funcionário responsável pela manutenção, filtrando pelo nome do autor da obra.
 
